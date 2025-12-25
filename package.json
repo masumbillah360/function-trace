@@ -9,8 +9,9 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --dts --format esm,cjs",
-        "prepublishOnly": "npm run build"
+        "build": "tsc",
+        "prepublishOnly": "npm run build",
+        "test": "npm run build && node dist/tests/index.js"
     },
     "keywords": [
         "trace",
@@ -27,6 +28,7 @@
         "url": "https://masum-billah.vercel.app"
     },
     "devDependencies": {
+        "ts-node": "^10.9.2",
         "tsup": "^7.0.0",
         "typescript": "^5.0.0"
     }

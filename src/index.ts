@@ -1,10 +1,22 @@
-import { TraceOptions, TraceStats } from "./types";
+export interface TraceOptions {
+    log?: boolean;
+    maxHistory?: number; // keep last N execution times
+    color?: boolean; // enable colored output
+}
+
+export interface TraceStats {
+    calls: number;
+    errors: number;
+    lastTime: number;
+    history: number[];
+}
+
 
 export function trace<F extends (...args: any[]) => any>(
     fn: F,
     options: TraceOptions = {}
 ): F & { stats: TraceStats } {
-    const { log = false, maxHistory = 50 } = options;
+    const { log = false, maxHistory = 50, color = true } = options;
     const stats: TraceStats = { calls: 0, errors: 0, lastTime: 0, history: [] };
 
     const wrapped = ((...args: Parameters<F>) => {
@@ -24,12 +36,17 @@ export function trace<F extends (...args: any[]) => any>(
                         stats.history.push(stats.lastTime);
                         if (stats.history.length > maxHistory)
                             stats.history.shift();
-                        if (log)
+                        if (log) {
+                            const bold = '\x1b[1m';
+                            const cyan = '\x1b[36m';
+                            const reset = '\x1b[0m';
+                            const prefix = color ? `${bold}${cyan}[func-trace]${reset}` : '[func-trace]';
                             console.log(
-                                `[func-trace] ${
+                                `${prefix} ${
                                     fn.name || 'anonymous'
                                 } executed in ${stats.lastTime.toFixed(2)}ms`
                             );
+                        }
                         return res;
                     })
                     .catch((err) => {
@@ -41,12 +58,17 @@ export function trace<F extends (...args: any[]) => any>(
                 stats.lastTime = end - start;
                 stats.history.push(stats.lastTime);
                 if (stats.history.length > maxHistory) stats.history.shift();
-                if (log)
+                if (log) {
+                    const bold = '\x1b[1m';
+                    const cyan = '\x1b[36m';
+                    const reset = '\x1b[0m';
+                    const prefix = color ? `${bold}${cyan}[func-trace]${reset}` : '[func-trace]';
                     console.log(
-                        `[func-trace] ${
+                        `${prefix} ${
                             fn.name || 'anonymous'
                         } executed in ${stats.lastTime.toFixed(2)}ms`
                     );
+                }
                 return result;
             }
         } catch (err) {

@@ -37,3 +37,4 @@ coverage
 .grunt
 bower_components
 jspm_packages
+tests
