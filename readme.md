@@ -1,4 +1,4 @@
-# func-trace
+# function-trace
 
 > A tiny universal function profiler and logger for full-stack developers. Trace execution time, monitor function calls, and track errors with zero configuration.
 
@@ -19,7 +19,7 @@
 ## Installation
 
 ```bash
-npm install func-trace
+npm install function-trace
 ```
 
 ## Quick Start
@@ -27,13 +27,13 @@ npm install func-trace
 ### Basic Usage
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 // Wrap any function with trace
 const add = trace((a: number, b: number) => a + b, { log: true });
 
 const result = add(5, 3);
-// Output: [func-trace] anonymous executed in 0.05ms
+// Output: [function-trace] anonymous executed in 0.05ms
 
 console.log(add.stats); // { calls: 1, errors: 0, lastTime: 0.05, history: [0.05] }
 ```
@@ -41,7 +41,7 @@ console.log(add.stats); // { calls: 1, errors: 0, lastTime: 0.05, history: [0.05
 ### Synchronous Functions
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const sum = () => {
     return 1 + 2 + 3 + 4 + 5;
@@ -49,9 +49,9 @@ const sum = () => {
 
 const tracedSum = trace(sum, { log: true });
 
-tracedSum(); // [func-trace] sum executed in 0.02ms
-tracedSum(); // [func-trace] sum executed in 0.01ms
-tracedSum(); // [func-trace] sum executed in 0.02ms
+tracedSum(); // [function-trace] sum executed in 0.02ms
+tracedSum(); // [function-trace] sum executed in 0.01ms
+tracedSum(); // [function-trace] sum executed in 0.02ms
 
 console.log(tracedSum.stats);
 // {
@@ -65,7 +65,7 @@ console.log(tracedSum.stats);
 ### Asynchronous Functions
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const fetchTodo = trace(
     async (id: number) => {
@@ -78,7 +78,7 @@ const fetchTodo = trace(
 );
 
 await fetchTodo(1);
-// [func-trace] fetchTodo executed in 145.32ms
+// [function-trace] fetchTodo executed in 145.32ms
 
 console.log(fetchTodo.stats);
 // {
@@ -92,13 +92,13 @@ console.log(fetchTodo.stats);
 ### Named Functions
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const multiply = (a: number, b: number) => a * b;
 const tracedMultiply = trace(multiply, { log: true });
 
 tracedMultiply(3, 4);
-// [func-trace] multiply executed in 0.03ms
+// [function-trace] multiply executed in 0.03ms
 ```
 
 ## API Reference
@@ -140,7 +140,7 @@ interface TraceStats {
 ### Database Query Monitoring
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const getUserById = trace(
     async (userId: string) => {
@@ -171,7 +171,7 @@ async function handleRequest(userId: string) {
 ### API Endpoint Monitoring
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const apiCall = trace(
     async (url: string) => {
@@ -190,7 +190,7 @@ console.log(`Last response time: ${apiCall.stats.lastTime}ms`);
 ### Function Performance Alerts
 
 ```typescript
-import { trace } from 'func-trace';
+import { trace } from 'function-trace';
 
 const criticalOperation = trace(
     async () => {
