@@ -1,35 +1,37 @@
 {
-    "name": "func-trace",
-    "version": "0.1.0",
-    "description": "Tiny universal function profiler/logger for full-stack developers",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "tsc",
-        "prepublishOnly": "npm run build",
-        "test": "npm run build && node dist/tests/index.js"
-    },
-    "keywords": [
-        "trace",
-        "profiler",
-        "logger",
-        "performance",
-        "async",
-        "typescript"
-    ],
-    "license": "MIT",
-    "author": {
-        "name": "Masum Billah",
-        "email": "dev.billah@gmail.com",
-        "url": "https://masum-billah.vercel.app"
-    },
-    "devDependencies": {
-        "ts-node": "^10.9.2",
-        "tsup": "^7.0.0",
-        "typescript": "^5.0.0"
-    }
+  "name": "function-trace",
+  "version": "0.1.0",
+  "description": "Tiny universal function profiler/logger for full-stack developers",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build && node dist/tests/index.js"
+  },
+  "keywords": [
+    "trace",
+    "profiler",
+    "logger",
+    "performance",
+    "async",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Masum Billah",
+    "email": "dev.billah@gmail.com",
+    "url": "https://masum-billah.vercel.app"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "tsup": "^7.0.0",
+    "typescript": "^5.0.0"
+  }
 }

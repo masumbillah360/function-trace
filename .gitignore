@@ -1,8 +1,6 @@
 node_modules
 dist
-.env
 .DS_Store
-.vscode
 .idea
 coverage
 npm-debug.log*
@@ -13,10 +11,6 @@ pnpm-debug.log*
 *.log
 .cache
 *.tsbuildinfo
-.env.test
-.env.production
-.env.development
-.env.local
 .env.*.local
 .secrets.json
 .secrets.*.json
@@ -38,3 +32,4 @@ coverage
 bower_components
 jspm_packages
 tests
+config.bat
